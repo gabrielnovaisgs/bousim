@@ -1,9 +1,7 @@
 
+
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
@@ -14,12 +12,15 @@ export {
 } from 'expo-router';
 
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-//SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  return <RootLayoutNav />;
+
+  return (<RootLayoutNav />);
+
+
 }
+
+
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
@@ -31,4 +32,5 @@ function RootLayoutNav() {
       </Stack>
     </ThemeProvider>
   );
+
 }

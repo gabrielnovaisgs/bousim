@@ -1,7 +1,8 @@
 import axios from "axios";
 import { View, Text } from "./Themed";
 import { useEffect, useState } from "react";
-import { FlatList } from "react-native";
+import { Button, FlatList } from "react-native";
+import api from "@/api/api";
 
 interface Transaction {
     id: string;
@@ -16,9 +17,8 @@ export function TransactionsList() {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = { data: [{ id: "1", userId: "4b5a03f1-317b-4b3f-b372-b3cc01725431", amount: 100, date: "2021-01-01" }] };//await axios.get('http://localhost:3000/transactions/user/4b5a03f1-317b-4b3f-b372-b3cc01725431');
-                setTransactions(response.data);
-                console.log("Transactions:", response.data);
+                const response = await api.get('/api/transactions');
+                setTransactions(response.data.data);
             } catch (error) {
                 console.error("Error fetching transactions:", error);
             }
@@ -29,14 +29,16 @@ export function TransactionsList() {
 
     return (
         <View>
-            <Text>Transactions</Text>
+            <Button onPress={() => { console.log("Transactions:", transactions) }} title="Click me"></Button>
+            <Text>Transactions new</Text>
+
+
             <FlatList
                 data={transactions}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <View>
                         <Text>{item.id}</Text>
-                        <Text>{item.userId}</Text>
                         <Text>{item.amount}</Text>
                         <Text>{item.date}</Text>
                     </View>
