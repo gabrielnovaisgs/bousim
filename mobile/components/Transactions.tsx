@@ -1,5 +1,6 @@
 import axios from "axios";
-import { View, Text } from "./Themed";
+import { View } from "./Themed";
+import { Text } from "@/components/ui/text";
 import { useEffect, useState } from "react";
 import { Button, FlatList } from "react-native";
 import api from "@/api/api";

@@ -1,6 +1,8 @@
 
 
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { Stack } from 'expo-router';
 import 'react-native-reanimated';
 
@@ -15,20 +17,21 @@ export {
 
 
 export default function RootLayout() {
-  return (<RootLayoutNav />);
+  return <GluestackUIProvider mode="light"><RootLayoutNav /></GluestackUIProvider>;
 }
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-        </Stack>
-      </SafeAreaProvider>
-    </ThemeProvider>
+
+    <SafeAreaProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+    </SafeAreaProvider>
+
+
   );
 
 }
