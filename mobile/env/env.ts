@@ -1,4 +1,4 @@
-import  Config  from 'react-native-config';
+
 import { z } from 'zod';
 const envSchema = z.object({
     EXPO_PUBLIC_MOCK_DATA: z.coerce.boolean().default(false),

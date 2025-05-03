@@ -1,23 +1,20 @@
 import { AxiosInstance } from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { faker } from "./faker";
 
 export function setupMocks(axiosInstance: AxiosInstance) {
 
     const mock = new AxiosMockAdapter(axiosInstance)
     
     mock.onGet('/api/transactions').reply(200, {
-        data: [
-            {
-                id:4 ,
-                amount: 100,
-                date: '2021-01-01'
-            },
-            {
-                id: 2,
-                amount: 200,
-                date: '2021-01-02'
-            }
-        ]
+        data: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, () => 
+            ({  
+                id: faker.string.uuid(),
+                amount: faker.finance.amount(),
+                date: faker.date.recent()
+            })
+        )
+        
     })
 }
 
