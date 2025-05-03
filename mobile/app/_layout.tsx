@@ -3,7 +3,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
@@ -15,9 +15,13 @@ export {
 } from 'expo-router';
 
 
-
+const loggedIn = false;
 export default function RootLayout() {
-  return <GluestackUIProvider mode="light"><RootLayoutNav /></GluestackUIProvider>;
+  return <GluestackUIProvider mode="light">
+    <SafeAreaProvider>
+      <RootLayoutNav />
+    </SafeAreaProvider>
+  </GluestackUIProvider>;
 }
 
 function RootLayoutNav() {
@@ -25,11 +29,12 @@ function RootLayoutNav() {
 
   return (
 
-    <SafeAreaProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-      </Stack>
-    </SafeAreaProvider>
+
+    <Stack>
+      <Stack.Screen name="(logged-in)" options={{ headerShown: false }} />
+      <Stack.Screen name="sign-in" />
+    </Stack>
+
 
 
   );
