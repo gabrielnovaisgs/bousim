@@ -1,11 +1,12 @@
+import env from "@/env/env";
 import  { setupMocks } from "@/mocks/mockRequests";
 import axios from "axios";
 
 
 
 export const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: env.EXPO_PUBLIC_API_URL
 })
 
-if (__DEV__) setupMocks(axiosInstance)
+if (env.EXPO_PUBLIC_MOCK_DATA) setupMocks(axiosInstance)
 export default axiosInstance
