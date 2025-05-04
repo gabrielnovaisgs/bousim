@@ -5,6 +5,9 @@ import { Text } from "@/components/ui/text";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query";
+import api from "@/api/api";
+import { setAuthToken } from "@/hooks/use-auth-token";
 
 
 export function SignInForm() {
@@ -16,16 +19,35 @@ export function SignInForm() {
 
     type signInUserFormType = z.infer<typeof signInUserFormSchema>
 
-    const { control, handleSubmit, formState: { errors } } = useForm<signInUserFormType>({
+    const { control, handleSubmit: formHandleSubmit, formState: { errors } } = useForm<signInUserFormType>({
         resolver: zodResolver(signInUserFormSchema)
     });
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+
+    const { mutate: signIn } = useMutation({
+        mutationFn: async (data: signInUserFormType) => {
+            console.log("data mutation", data)
+            return api.post("/auth/sign-in", data)
+        },
+        onSuccess: (data) => {
+            console.log("on success", data)
+            setAuthToken(data.data.access_token)
+        },
+        onError: (error) => {
+            console.log("on error", error)
+        }
+    })
+
+    async function handleSubmit(data: signInUserFormType) {
+        console.log("data", data)
+        const response = await signIn(data)
+        console.log("response", response)
+
     }
 
     return (
-        <View>
+        <View className="gap-2 m-4 items-center">
+            <Text className="w-full ">Email</Text>
             <Controller
                 control={control}
                 name="email"
@@ -41,7 +63,7 @@ export function SignInForm() {
                     </Input>
                 )}
             />
-
+            <Text className="w-full ">Senha</Text>
             <Controller
                 control={control}
                 name="password"
@@ -59,8 +81,10 @@ export function SignInForm() {
                 )}
             />
             {errors.email && <Text>{errors.email.message}</Text>}
-            <Button onPress={handleSubmit(onSubmit)}>
-                <ButtonText>Sign In</ButtonText>
+            <Button
+                className="w-fit "
+                onPress={formHandleSubmit(handleSubmit)}>
+                <ButtonText className="w-fit">Sign In</ButtonText>
             </Button>
 
         </View>

@@ -16,6 +16,14 @@ export function setupMocks(axiosInstance: AxiosInstance) {
         )
         
     })
+
+    mock.onPost('/api/auth/sign-in').reply(200, {
+        data: {
+            token_id: faker.string.uuid(),
+            name: faker.person.firstName(),
+            email: faker.internet.email()
+        }
+    })
 }
 
 
