@@ -11,12 +11,18 @@ export function SignUpForm() {
 
     const signInUserFormSchema = z.object({
         email: z.string().email("Email invalido").nonempty("Email is required"),
-        password: z.string().nonempty("Password is required")
+        password: z.string().nonempty("Password is required"),
+        confirmPassword: z.string().nonempty("Password is required")
+    }).refine(({ password, confirmPassword }) => {
+        return password === confirmPassword
+    }, {
+        message: "Password doens't match",
+        path: ['confirmPassword']
     })
 
     type signInUserFormType = z.infer<typeof signInUserFormSchema>
 
-    const { control, handleSubmit, formState: { errors } } = useForm<signInUserFormType>({
+    const { control, handleSubmit, formState: { errors }, watch } = useForm<signInUserFormType>({
         resolver: zodResolver(signInUserFormSchema)
     });
 
@@ -58,6 +64,23 @@ export function SignUpForm() {
                     </Input>
                 )}
             />
+            <Controller
+                control={control}
+                name="confirmPassword"
+                rules={{
+                    required: true
+                }}
+                render={({ field: { onChange, value } }) => (
+                    <Input >
+                        <InputField
+
+                            type="password"
+                            placeholder="Repita sua senha"
+                            onChangeText={onChange} value={value} />
+                    </Input>
+                )}
+            />
+            {errors.confirmPassword && <Text>{errors.confirmPassword.message}</Text>}
             {errors.email && <Text>{errors.email.message}</Text>}
             <Button onPress={handleSubmit(onSubmit)}>
                 <ButtonText>Sign In</ButtonText>
