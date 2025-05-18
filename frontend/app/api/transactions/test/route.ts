@@ -4,6 +4,8 @@ import credentials from "@config/financial-sheets-key.json"
 import { env } from "@env/env";
 import { JWT } from "google-auth-library";
 import { writeFileSync } from "fs";
+import { FinancialData } from "@customTypes/transaction";
+
 type FinancialRowData = {
   ID: string;
   Date: string;
@@ -19,6 +21,7 @@ type FinancialRowData = {
   time: string;
 }
 
+
 export async function GET(request: Request) {
   const serviceAccountAuth = new JWT({
     email: credentials.client_email,
@@ -33,12 +36,16 @@ export async function GET(request: Request) {
     limit: 200,
 
   });
+  let index = 0
   const rowsData = rows.map((row) => {
-    return {
-      id: row.get('ID'),
+    index++
+
+    const newRow: FinancialData = {
+      id: index,
+      externalId: row.get('ID'),
       date: row.get('Date'),
       name: row.get('Name'),
-      value: convertToMoney(row.get('Value')),
+      amount: convertToMoney(row.get('Value')),
       description: row.get('Description'),
       from: row.get('From'),
       to: row.get('To'),
@@ -48,6 +55,7 @@ export async function GET(request: Request) {
       payments: row.get('Payments'),
       time: row.get('time'),
     }
+    return newRow
   })
   
   writeFileSync("./config/transactions.json", JSON.stringify(rowsData, null, 2));
@@ -58,7 +66,7 @@ export async function GET(request: Request) {
 
 function convertToMoney(value: string) {
   if (!value) return null;
-  const convertedValue = value.replace(/,/g, ".").replace(/[R$\s]/g, "")
+  const convertedValue = value.replace(/[Rr\$\s.]/g, "").replace(/,/g, ".")
   
-  return parseFloat(convertedValue).toFixed(2);
+  return parseFloat(convertedValue);
 }
