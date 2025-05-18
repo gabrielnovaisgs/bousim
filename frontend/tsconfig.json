@@ -24,7 +24,7 @@
       "@hooks/*": ["./hooks/*"],
       "@components/*": ["./components/*"],
       "@env/*": ["./env/*"],
-      "@lib/*": ["./lib/*"],
+      "@lib/*": ["./components/ui/lib/*"],
       "@customTypes/*": ["./customTypes/*"],
     }
   },

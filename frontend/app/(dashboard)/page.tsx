@@ -1,5 +1,5 @@
 "use client"
-import { useTransactions } from "./hooks/use-transactions";
+import { useTransactions } from "@hooks/use-transactions";
 
 export default function Home() {
   const { data, loading
