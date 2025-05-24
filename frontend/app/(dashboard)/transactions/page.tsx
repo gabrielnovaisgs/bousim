@@ -2,45 +2,19 @@
 
 import React from "react";
 import { useTransactions } from "@hooks/use-transactions";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  TableCaption,
-} from "@components/ui/table";
+
+import { DataTable } from "./data-table";
+import { columns } from "./transaction-column";
 
 export default function TransactionsPage() {
-  const { data, loading } = useTransactions();
+    const { data, loading } = useTransactions();
 
-  if (loading) return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
 
-  return (
-    <>
-      <h1 className="mb-4 text-2xl font-bold">Transactions</h1>
-      <Table>
-        <TableCaption>List of transactions</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Date</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {data.map((transaction) => (
-            <TableRow key={transaction.id}>
-              <TableCell>{transaction.date}</TableCell>
-              <TableCell>{transaction.name}</TableCell>
-              <TableCell>{transaction.description}</TableCell>
-              <TableCell>{transaction.amount ?? "-"}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </>
-  );
+    return (
+        <>
+            <h1 className="mb-4 text-2xl font-bold bg-red-200">Transactions</h1>
+            <DataTable data={data} columns={columns} />
+        </>
+    );
 }
