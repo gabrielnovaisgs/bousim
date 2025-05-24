@@ -13,7 +13,7 @@ export default function TransactionsPage() {
 
     return (
         <>
-            <h1 className="mb-4 text-2xl font-bold bg-red-200">Transactions</h1>
+            <h1 className="mb-4 text-2xl font-bold">Transactions</h1>
             <DataTable data={data} columns={columns} />
         </>
     );
