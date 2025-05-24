@@ -1,4 +1,5 @@
 
+import { ThemeProvider } from "@components/theme-provider";
 import "./globals.css";
 
 
@@ -12,7 +13,14 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
