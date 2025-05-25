@@ -32,9 +32,6 @@ export async function GET(request: Request) {
   await doc.loadInfo(); // loads document properties and worksheets
   const sheet = await doc.sheetsById[env.SHEETS_ID]
   const rows = await sheet.getRows<FinancialRowData>({
-    offset: 400,
-    limit: 200,
-
   });
   let index = 0
   const rowsData = rows.map((row) => {
@@ -61,7 +58,7 @@ export async function GET(request: Request) {
   writeFileSync("./config/transactions.json", JSON.stringify(rowsData, null, 2));
   
 
-  return new NextResponse("Hello, Next.js!");
+  return NextResponse.json(rowsData);
 }
 
 function convertToMoney(value: string) {

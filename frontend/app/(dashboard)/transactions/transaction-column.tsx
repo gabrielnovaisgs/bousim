@@ -11,6 +11,7 @@ export const columns: ColumnDef<FinancialData>[] = [
         id: "select",
         enableHiding: false,
         enableSorting: false,
+        size: 32,
         header: ({ table }) => (
             <Checkbox
                 checked={
@@ -34,15 +35,28 @@ export const columns: ColumnDef<FinancialData>[] = [
     {
         accessorKey: "date",
         header: "Date",
+        size: 100
     },
     {
         accessorKey: "name",
         header: "Name",
+        enableResizing: false,
+        cell: ({ cell }) => {
+            return (<p className="text-wrap ">{cell.getValue() as string}</p>)
+        }
+
+
 
     },
     {
         accessorKey: "description",
         header: "Description",
+        enableResizing: false,
+        cell: ({ cell }) => {
+            return (<p className="text-wrap">{cell.getValue() as string}</p>)
+        }
+
+
 
     },
     {

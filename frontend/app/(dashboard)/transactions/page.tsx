@@ -12,9 +12,9 @@ export default function TransactionsPage() {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <>
+        <div className="p-8">
             <h1 className="mb-4 text-2xl font-bold">Transactions</h1>
             <DataTable data={data} columns={columns} />
-        </>
+        </div>
     );
 }
