@@ -35,7 +35,7 @@ export function CategoryExpensesPlot() {
             <Card >
                 <CardHeader>
                     <CardTitle className="flex justify-between items-center">
-                        <p>Gastos por categoria</p>
+                        <p>Mês 5 de 2025</p>
                         <Select onValueChange={handlePlotChange} value={plot}>
                             <SelectTrigger>
                                 <SelectValue placeholder="Escolha um gráfico" />
@@ -50,9 +50,6 @@ export function CategoryExpensesPlot() {
                             </SelectContent>
                         </Select>
                     </CardTitle>
-                    <CardDescription>
-                        Mês 5 de 2025
-                    </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <ChartContainer config={chartConfig} className="min-h-[200px] w-full h-56">
