@@ -21,7 +21,23 @@ export function AppSidebar() {
                                 <SidebarMenuButton asChild>
                                     <a href="/transactions">
                                         <TablePropertiesIcon />
-                                        <p>Transactions</p>
+                                        <p>Transações</p>
+                                    </a>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                    <a href="/transactions">
+                                        <TablePropertiesIcon />
+                                        <p>Orçamentos</p>
+                                    </a>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                    <a href="/transactions">
+                                        <TablePropertiesIcon />
+                                        <p>Relatórios</p>
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
