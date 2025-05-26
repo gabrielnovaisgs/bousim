@@ -30,7 +30,8 @@ export function CategoryExpensesPlot() {
         setPlot(value);
     }
     return (
-        <div >
+        <div className="flex flex-col gap-4">
+            <h2 className="scroll-m-20  text-3xl font-semibold tracking-tight first:mt-0">Gastos por categoria</h2>
             <Card >
                 <CardHeader>
                     <CardTitle className="flex justify-between items-center">

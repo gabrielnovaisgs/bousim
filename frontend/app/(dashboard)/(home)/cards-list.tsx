@@ -35,21 +35,24 @@ const cards = [
 
 export function CardsList() {
     return (
-        <ScrollArea className=" w-full px-2 py-4 mt-4 whitespace-nowrap rounded-md border" >
-            <div className="flex w-max space-x-4">
-                {cards.map((card, index) => (
-                    <Card key={index} className="w-56 ">
-                        <CardHeader>
-                            <CardTitle>{card.name}</CardTitle>
-                            <CardDescription>{card.type === "credit" ? "Crédito" : "Débito"}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <p>Valor: R$ {card.value.toFixed(2)}</p>
-                        </CardContent>
-                    </Card>
-                ))}
-            </div>
-            <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+        <div className="flex flex-col gap-4">
+            <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">Cartões</h2>
+            <ScrollArea className=" w-full px-2 pb-4  whitespace-nowrap" >
+                <div className="flex w-max space-x-4">
+                    {cards.map((card, index) => (
+                        <Card key={index} className="w-56 ">
+                            <CardHeader>
+                                <CardTitle>{card.name}</CardTitle>
+                                <CardDescription>{card.type === "credit" ? "Crédito" : "Débito"}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <p>Valor: R$ {card.value.toFixed(2)}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+        </div>
     )
 }
