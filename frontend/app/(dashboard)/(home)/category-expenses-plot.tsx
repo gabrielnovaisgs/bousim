@@ -1,5 +1,13 @@
 "use client";
 
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@components/ui/card";
+import { ChartConfig, ChartContainer } from "@components/ui/chart";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@components/ui/select";
+import { SelectValue } from "@radix-ui/react-select";
+import { ReactEventHandler, useState } from "react";
+import { Bar, BarChart, LabelList, Pie, PieChart, XAxis } from "recharts";
+
+
 const data = [
     { category: "Food", value: 120.50 },
     { category: "Transport", value: 80.00 },
@@ -8,13 +16,86 @@ const data = [
     { category: "Health", value: 90.25 },
 ];
 
+const chartConfig = {
+    value: {
+        label: "Valor",
+        color: "hsl(var(--chart-1))",
+    },
+} satisfies ChartConfig
 export function CategoryExpensesPlot() {
+
+    const [plot, setPlot] = useState<"bar" | "pie">("bar");
+
+    function handlePlotChange(value: "bar" | "pie") {
+        setPlot(value);
+    }
     return (
-        <div className="flex items-center justify-between p-4 bg-white rounded-md shadow-sm">
-            <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-700">{ }</span>
-            </div>
-            <span className="text-lg font-semibold text-gray-900">R$ { }</span>
+        <div >
+            <Card >
+                <CardHeader>
+                    <CardTitle className="flex justify-between items-center">
+                        <p>Gastos por categoria</p>
+                        <Select onValueChange={handlePlotChange} value={plot}>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Escolha um gráfico" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="bar">
+                                    Gráfico de barras
+                                </SelectItem>
+                                <SelectItem value="pie">
+                                    Gráfico de pizza
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </CardTitle>
+                    <CardDescription>
+                        Mês 5 de 2025
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ChartContainer config={chartConfig} className="min-h-[200px] w-full h-56">
+
+                        {plot === "bar" && (
+
+                            <BarChart accessibilityLayer data={data}>
+                                <Bar dataKey={"value"} fill="var(--chart-1)" radius={8} maxBarSize={32} ></Bar>
+                                <XAxis dataKey={"category"}
+                                    tickLine={false}
+                                    axisLine={false}
+                                    tickMargin={2}
+
+
+                                />
+                            </BarChart>
+                        )
+                        }
+
+                        {plot === "pie" && (
+                            <PieChart>
+                                <Pie data={data}
+                                    dataKey="value"
+                                    nameKey="category"
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius={80}
+                                    fill="var(--chart-1)"
+                                    label >
+                                    <LabelList
+                                        dataKey="category"
+                                        className="fill-background"
+                                        stroke="none"
+                                        fontSize={12}
+                                    >
+
+                                    </LabelList>
+                                </Pie>
+                            </PieChart>
+                        )}
+
+                    </ChartContainer>
+                </CardContent>
+            </Card>
         </div>
     );
 }

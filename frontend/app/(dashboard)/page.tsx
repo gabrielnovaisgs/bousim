@@ -10,7 +10,7 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen p-4">
+    <main className="min-h-screen p-4 flex flex-col gap-2">
       <h1 className="text-2xl font-bold">Dashboard</h1>
       <p>Visão geral das suas finanças</p>
       <CardsList />
