@@ -52,7 +52,7 @@ export function CategoryExpensesPlot() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ChartContainer config={chartConfig} className="min-h-[200px] w-full h-56">
+                    <ChartContainer config={chartConfig} className="min-h-[200px]  h-56 w-full">
 
                         {plot === "bar" && (
 

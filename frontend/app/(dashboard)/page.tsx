@@ -12,10 +12,8 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen p-8 flex flex-col gap-8">
-      <div className="flex items-center justify-between">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Dashboard</h1>
-      </div>
+    <main className="p-8 flex flex-1 flex-col gap-8 mt-10">
+
       <CardsList />
       <CategoryExpensesPlot />
       <LastTransactions />

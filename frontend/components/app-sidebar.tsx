@@ -3,7 +3,7 @@ import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupC
 
 export function AppSidebar() {
     return (
-        <Sidebar>
+        <Sidebar collapsible="icon" >
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel >Bousim</SidebarGroupLabel>

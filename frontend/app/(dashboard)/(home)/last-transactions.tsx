@@ -10,7 +10,7 @@ export function LastTransactions() {
     const { data } = useTransactions();
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col  gap-4">
             <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                 Últimas transações
             </h2>
