@@ -28,7 +28,7 @@ export function AppSidebar() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
                                     <a href="/transactions">
-                                        <TablePropertiesIcon />
+                                        <ArrowRi />
                                         <p>Transações</p>
                                     </a>
                                 </SidebarMenuButton>
