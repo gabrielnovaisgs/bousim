@@ -12,16 +12,19 @@ export default function Layout({
         <SidebarProvider>
             <div className="flex h-screen w-full">
                 <AppSidebar />
-                <SidebarInset className="flex-1 min-w-0 overflow-y-auto">
+                <SidebarInset className="flex-1 min-w-0 overflow-y-auto ">
                     <header className="fixed h-14 w-full z-50 flex items-center border-b px-4 bg-sidebar">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 ">
 
                             <SidebarTrigger className="mr-2" />
                             <h3 className="text-lg font-semibold">Dashboard</h3>
                         </div>
 
                     </header>
-                    {children}
+                    <div className="pt-14">
+                        {children}
+
+                    </div>
                 </SidebarInset>
             </div>
         </SidebarProvider>

@@ -1,4 +1,4 @@
-import { CreditCardIcon, Home, TablePropertiesIcon } from "lucide-react";
+import { ArrowRightLeftIcon, CreditCardIcon, HomeIcon, NotebookTextIcon, PiggyBankIcon } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from "./ui/sidebar";
 
 export function AppSidebar() {
@@ -12,14 +12,14 @@ export function AppSidebar() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
                                     <a href="/">
-                                        <Home />
+                                        <HomeIcon />
                                         <p>Home</p>
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
-                                    <a href="/transactions">
+                                    <a href="/cards">
                                         <CreditCardIcon />
                                         <p>Cartões</p>
                                     </a>
@@ -28,7 +28,7 @@ export function AppSidebar() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
                                     <a href="/transactions">
-                                        <ArrowRi />
+                                        <ArrowRightLeftIcon />
                                         <p>Transações</p>
                                     </a>
                                 </SidebarMenuButton>
@@ -36,7 +36,7 @@ export function AppSidebar() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
                                     <a href="/transactions">
-                                        <TablePropertiesIcon />
+                                        <PiggyBankIcon />
                                         <p>Orçamentos</p>
                                     </a>
                                 </SidebarMenuButton>
@@ -44,7 +44,7 @@ export function AppSidebar() {
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
                                     <a href="/transactions">
-                                        <TablePropertiesIcon />
+                                        <NotebookTextIcon />
                                         <p>Relatórios</p>
                                     </a>
                                 </SidebarMenuButton>

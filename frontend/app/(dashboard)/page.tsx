@@ -12,7 +12,7 @@ export default function Home() {
 
 
   return (
-    <main className="p-8 flex flex-1 flex-col gap-8 mt-10">
+    <main className="p-8 flex flex-1 flex-col gap-8">
 
       <CardsList />
       <CategoryExpensesPlot />
