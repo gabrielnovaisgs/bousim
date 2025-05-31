@@ -54,7 +54,7 @@ export function CategoryExpensesPlot() {
                 <CardContent>
                     <ChartContainer config={chartConfig} className="min-h-[200px]  h-56 w-full">
 
-                        {plot === "bar" && (
+                        {plot === "bar" ? (
 
                             <BarChart accessibilityLayer data={data}>
                                 <Bar dataKey={"value"} fill="var(--chart-1)" radius={8} maxBarSize={32} ></Bar>
@@ -66,30 +66,27 @@ export function CategoryExpensesPlot() {
 
                                 />
                             </BarChart>
-                        )
+                        ) : <PieChart>
+                            <Pie data={data}
+                                dataKey="value"
+                                nameKey="category"
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={80}
+                                fill="var(--chart-1)"
+                                label >
+                                <LabelList
+                                    dataKey="category"
+                                    className="fill-background"
+                                    stroke="none"
+                                    fontSize={12}
+                                >
+
+                                </LabelList>
+                            </Pie>
+                        </PieChart>
                         }
 
-                        {plot === "pie" && (
-                            <PieChart>
-                                <Pie data={data}
-                                    dataKey="value"
-                                    nameKey="category"
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius={80}
-                                    fill="var(--chart-1)"
-                                    label >
-                                    <LabelList
-                                        dataKey="category"
-                                        className="fill-background"
-                                        stroke="none"
-                                        fontSize={12}
-                                    >
-
-                                    </LabelList>
-                                </Pie>
-                            </PieChart>
-                        )}
 
                     </ChartContainer>
                 </CardContent>

@@ -8,7 +8,7 @@ export function  useTransactions() {
 
     useEffect(() => {
         setLoading(true);
-        fetch("http://localhost:3000/api/transactions").then((res) => {
+        fetch("http://localhost:3001/api/transactions").then((res) => {
             res.json().then((value) => {
                 setData(value.data);
                 setLoading(false);

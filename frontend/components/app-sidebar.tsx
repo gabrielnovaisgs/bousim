@@ -1,4 +1,4 @@
-import { Home, TablePropertiesIcon } from "lucide-react";
+import { CreditCardIcon, Home, TablePropertiesIcon } from "lucide-react";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from "./ui/sidebar";
 
 export function AppSidebar() {
@@ -14,6 +14,14 @@ export function AppSidebar() {
                                     <a href="/">
                                         <Home />
                                         <p>Home</p>
+                                    </a>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                    <a href="/transactions">
+                                        <CreditCardIcon />
+                                        <p>Cartões</p>
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
